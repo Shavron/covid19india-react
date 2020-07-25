@@ -108,7 +108,9 @@ export const toTitleCase = (str) => {
 
 export const getStatistic = (data, type, statistic, perMillion = false) => {
   let count;
-  if (statistic === 'active') {
+  if (statistic === 'population') {
+    return type === 'total' ? data?.meta?.population || NaN : 0;
+  } else if (statistic === 'active') {
     const confirmed = data?.[type]?.confirmed || 0;
     const deceased = data?.[type]?.deceased || 0;
     const recovered = data?.[type]?.recovered || 0;

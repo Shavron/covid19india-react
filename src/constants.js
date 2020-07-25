@@ -21,10 +21,14 @@ export const PRIMARY_STATISTICS = [
   'deceased',
 ];
 
-export const TABLE_STATISTICS = [
+export const TABLE_STATISTICS = [...PRIMARY_STATISTICS, 'tested'];
+
+export const BIG_TABLE_STATISTICS = [
   ...PRIMARY_STATISTICS,
+  'migrated',
   'tested',
-  ...PRIMARY_STATISTICS,
+  'tested date',
+  'population',
 ];
 
 export const DISTRICT_TABLE_COUNT = 30;

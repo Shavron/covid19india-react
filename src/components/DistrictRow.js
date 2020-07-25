@@ -1,8 +1,6 @@
 import Cell from './Cell';
 import Tooltip from './Tooltip';
 
-import {TABLE_STATISTICS} from '../constants';
-
 import classnames from 'classnames';
 import equal from 'fast-deep-equal';
 import produce from 'immer';
@@ -17,6 +15,7 @@ function DistrictRow({
   isPerMillion,
   regionHighlighted,
   setRegionHighlighted,
+  tableStatistics,
 }) {
   const {t} = useTranslation();
 
@@ -47,7 +46,7 @@ function DistrictRow({
         )}
       </div>
 
-      {TABLE_STATISTICS.map((statistic) => (
+      {tableStatistics.map((statistic) => (
         <Cell key={statistic} {...{statistic, data, isPerMillion}} />
       ))}
     </div>
@@ -73,6 +72,8 @@ const isDistrictRowEqual = (prevProps, currProps) => {
     (equal(prevProps.regionHighlighted.districtName, prevProps.districtName) ||
       equal(currProps.regionHighlighted.districtName, currProps.districtName))
   ) {
+    return false;
+  } else if (!equal(prevProps.tableStatistics, currProps.tableStatistics)) {
     return false;
   }
   return true;

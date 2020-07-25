@@ -3,11 +3,7 @@ import DistrictRow from './DistrictRow';
 import HeaderCell from './HeaderCell';
 import Tooltip from './Tooltip';
 
-import {
-  TABLE_STATISTICS,
-  STATE_NAMES,
-  UNKNOWN_DISTRICT_KEY,
-} from '../constants';
+import {STATE_NAMES, UNKNOWN_DISTRICT_KEY} from '../constants';
 import {
   capitalize,
   formatLastUpdated,
@@ -37,6 +33,7 @@ function Row({
   isPerMillion,
   regionHighlighted,
   setRegionHighlighted,
+  tableStatistics,
 }) {
   const [showDistricts, setShowDistricts] = useState(false);
   const [sortData, setSortData] = useSessionStorage('districtSortData', {
@@ -179,7 +176,7 @@ function Row({
           )}
         </div>
 
-        {TABLE_STATISTICS.map((statistic) => (
+        {tableStatistics.map((statistic) => (
           <Cell key={statistic} {...{data, statistic, isPerMillion}} />
         ))}
       </div>
@@ -238,7 +235,7 @@ function Row({
               )}
             </div>
 
-            {TABLE_STATISTICS.map((statistic) => (
+            {tableStatistics.map((statistic) => (
               <HeaderCell
                 key={statistic}
                 {...{statistic, sortData, setSortData}}
@@ -254,6 +251,7 @@ function Row({
           .sort((a, b) => sortingFunction(a, b))
           .map((districtName) => (
             <DistrictRow
+              data={data.districts[districtName]}
               key={districtName}
               {...{
                 districtName,
@@ -261,8 +259,8 @@ function Row({
                 setRegionHighlighted,
                 stateCode,
                 isPerMillion,
+                tableStatistics,
               }}
-              data={data.districts[districtName]}
             />
           ))}
 
@@ -307,6 +305,8 @@ const isEqual = (prevProps, currProps) => {
       )) ||
     equal(currProps.regionHighlighted.districtName, currProps.districtName)
   ) {
+    return false;
+  } else if (!equal(prevProps.tableStatistics, currProps.tableStatistics)) {
     return false;
   } else return true;
 };

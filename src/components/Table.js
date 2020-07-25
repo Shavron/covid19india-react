@@ -5,6 +5,7 @@ import TableDeltaHelper from './snippets/TableDeltaHelper';
 import {TABLE_FADE_IN, TABLE_FADE_OUT} from '../animations';
 import {
   DISTRICT_TABLE_COUNT,
+  BIG_TABLE_STATISTICS,
   TABLE_STATISTICS,
   UNASSIGNED_STATE_CODE,
 } from '../constants';
@@ -141,6 +142,8 @@ function Table({
     );
   }, [expandTable]);
 
+  const tableStatistics = expandTable ? BIG_TABLE_STATISTICS : TABLE_STATISTICS;
+
   return (
     <React.Fragment>
       <div className="table-top">
@@ -262,7 +265,12 @@ function Table({
         ) : null
       )}
 
-      <div className="table fadeInUp">
+      <div
+        className="table fadeInUp"
+        style={{
+          gridTemplateColumns: `repeat(${tableStatistics.length + 1}, auto)`,
+        }}
+      >
         <div className="row heading">
           <div
             className="cell heading"
@@ -280,10 +288,10 @@ function Table({
             )}
           </div>
 
-          {TABLE_STATISTICS.map((statistic) => (
+          {tableStatistics.map((statistic) => (
             <HeaderCell
               key={statistic}
-              {...{statistic, sortData, setSortData}}
+              {...{statistic, sortData, setSortData, expandTable}}
               handleSort={handleSortClick.bind(this, statistic)}
             />
           ))}
@@ -307,6 +315,7 @@ function Table({
                     isPerMillion,
                     regionHighlighted,
                     setRegionHighlighted,
+                    tableStatistics,
                   }}
                 />
               );
@@ -329,6 +338,7 @@ function Table({
                     isPerMillion,
                     regionHighlighted,
                     setRegionHighlighted,
+                    tableStatistics,
                   }}
                 />
               );
@@ -338,7 +348,12 @@ function Table({
           key={'TT'}
           data={states['TT']}
           stateCode={'TT'}
-          {...{isPerMillion, regionHighlighted, setRegionHighlighted}}
+          {...{
+            isPerMillion,
+            regionHighlighted,
+            setRegionHighlighted,
+            tableStatistics,
+          }}
         />
       </div>
     </React.Fragment>

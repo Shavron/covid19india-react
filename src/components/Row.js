@@ -3,7 +3,13 @@ import DistrictRow from './DistrictRow';
 import HeaderCell from './HeaderCell';
 import Tooltip from './Tooltip';
 
-import {STATE_NAMES, UNKNOWN_DISTRICT_KEY} from '../constants';
+import {
+  STATE_NAMES,
+  STATISTICS_CONFIGS,
+  TABLE_STATISTICS,
+  TABLE_STATISTICS_EXPANDED,
+  UNKNOWN_DISTRICT_KEY,
+} from '../constants';
 import {
   capitalize,
   formatLastUpdated,
@@ -33,7 +39,7 @@ function Row({
   isPerMillion,
   regionHighlighted,
   setRegionHighlighted,
-  tableStatistics,
+  expandTable,
 }) {
   const [showDistricts, setShowDistricts] = useState(false);
   const [sortData, setSortData] = useSessionStorage('districtSortData', {
@@ -62,17 +68,23 @@ function Row({
   const sortingFunction = useCallback(
     (districtNameA, districtNameB) => {
       if (sortData.sortColumn !== 'districtName') {
+        const statisticConfig = STATISTICS_CONFIGS[sortData.sortColumn];
+        const statisticOptions = {
+          ...statisticConfig.options,
+          perMillion: isPerMillion,
+        };
+
         const statisticA = getStatistic(
           data.districts[districtNameA],
           sortData.delta ? 'delta' : 'total',
-          sortData.sortColumn,
-          isPerMillion
+          statisticConfig.key,
+          statisticOptions
         );
         const statisticB = getStatistic(
           data.districts[districtNameB],
           sortData.delta ? 'delta' : 'total',
-          sortData.sortColumn,
-          isPerMillion
+          statisticConfig.key,
+          statisticOptions
         );
         return sortData.isAscending
           ? statisticA - statisticB
@@ -146,6 +158,10 @@ function Row({
     // eslint-disable-next-line
     const faux = stateCode;
   }, [stateCode]);
+
+  const tableStatistics = expandTable
+    ? TABLE_STATISTICS_EXPANDED
+    : TABLE_STATISTICS;
 
   return (
     <React.Fragment>
@@ -259,7 +275,7 @@ function Row({
                 setRegionHighlighted,
                 stateCode,
                 isPerMillion,
-                tableStatistics,
+                expandTable,
               }}
             />
           ))}
@@ -306,7 +322,7 @@ const isEqual = (prevProps, currProps) => {
     equal(currProps.regionHighlighted.districtName, currProps.districtName)
   ) {
     return false;
-  } else if (!equal(prevProps.tableStatistics, currProps.tableStatistics)) {
+  } else if (!equal(prevProps.expandTable, currProps.expandTable)) {
     return false;
   } else return true;
 };

@@ -5,8 +5,9 @@ import TableDeltaHelper from './snippets/TableDeltaHelper';
 import {TABLE_FADE_IN, TABLE_FADE_OUT} from '../animations';
 import {
   DISTRICT_TABLE_COUNT,
-  BIG_TABLE_STATISTICS,
+  STATISTICS_CONFIGS,
   TABLE_STATISTICS,
+  TABLE_STATISTICS_EXPANDED,
   UNASSIGNED_STATE_CODE,
 } from '../constants';
 import {getStatistic} from '../utils/commonFunctions';
@@ -80,17 +81,23 @@ function Table({
   const sortingFunction = useCallback(
     (regionKeyA, regionKeyB) => {
       if (sortData.sortColumn !== 'regionName') {
+        const statisticConfig = STATISTICS_CONFIGS[sortData.sortColumn];
+        const statisticOptions = {
+          ...statisticConfig.options,
+          perMillion: isPerMillion,
+        };
+
         const statisticA = getStatistic(
           districts?.[regionKeyA] || states[regionKeyA],
           sortData.delta ? 'delta' : 'total',
-          sortData.sortColumn,
-          isPerMillion
+          statisticConfig.key,
+          statisticOptions
         );
         const statisticB = getStatistic(
           districts?.[regionKeyB] || states[regionKeyB],
           sortData.delta ? 'delta' : 'total',
-          sortData.sortColumn,
-          isPerMillion
+          statisticConfig.key,
+          statisticOptions
         );
         return sortData.isAscending
           ? statisticA - statisticB
@@ -142,7 +149,9 @@ function Table({
     );
   }, [expandTable]);
 
-  const tableStatistics = expandTable ? BIG_TABLE_STATISTICS : TABLE_STATISTICS;
+  const tableStatistics = expandTable
+    ? TABLE_STATISTICS_EXPANDED
+    : TABLE_STATISTICS;
 
   return (
     <React.Fragment>
@@ -315,7 +324,7 @@ function Table({
                     isPerMillion,
                     regionHighlighted,
                     setRegionHighlighted,
-                    tableStatistics,
+                    expandTable,
                   }}
                 />
               );
@@ -338,7 +347,7 @@ function Table({
                     isPerMillion,
                     regionHighlighted,
                     setRegionHighlighted,
-                    tableStatistics,
+                    expandTable,
                   }}
                 />
               );
@@ -352,7 +361,7 @@ function Table({
             isPerMillion,
             regionHighlighted,
             setRegionHighlighted,
-            tableStatistics,
+            expandTable,
           }}
         />
       </div>

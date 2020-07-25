@@ -23,13 +23,43 @@ export const PRIMARY_STATISTICS = [
 
 export const TABLE_STATISTICS = [...PRIMARY_STATISTICS, 'tested'];
 
-export const BIG_TABLE_STATISTICS = [
+export const TABLE_STATISTICS_EXPANDED = [
   ...PRIMARY_STATISTICS,
-  'migrated',
+  'other',
   'tested',
-  'tested date',
+  'active rate',
+  'mortality rate',
+  'recovery rate',
   'population',
 ];
+
+export const STATISTICS_CONFIGS = {
+  confirmed: {key: 'confirmed'},
+  active: {key: 'active'},
+  recovered: {key: 'recovered'},
+  deceased: {key: 'deceased'},
+  other: {key: 'migrated'},
+  tested: {key: 'tested', format: 'short'},
+  'active rate': {
+    key: 'active',
+    options: {rate: true},
+    hideDelta: true,
+    format: '%',
+  },
+  'mortality rate': {
+    key: 'deceased',
+    options: {rate: true},
+    hideDelta: true,
+    format: '%',
+  },
+  'recovery rate': {
+    key: 'recovered',
+    options: {rate: true},
+    hideDelta: true,
+    format: '%',
+  },
+  population: {key: 'population', hideDelta: true, format: 'short'},
+};
 
 export const DISTRICT_TABLE_COUNT = 30;
 

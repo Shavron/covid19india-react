@@ -140,6 +140,7 @@ function Home(props) {
                       {...{mapStatistic, setMapStatistic}}
                       {...{regionHighlighted, setRegionHighlighted}}
                       {...{anchor, setAnchor}}
+                      {...{expandTable}}
                     />
                   </Suspense>
                 </div>

@@ -249,30 +249,18 @@ h6 {
     display: flex;
     flex-direction: column;
     width: 32rem;
-
-    &.expanded {
-      width: 69rem;
-    }
   }
 
   .home-left {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
     min-height: 60rem;
-
-    &.expanded {
-      margin-bottom: 2.5rem;
-    }
   }
 
   .home-right {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
     min-height: 10rem;
-
-    &.expanded {
-      flex-direction: row;
-    }
   }
 
   .header {
@@ -1187,7 +1175,7 @@ h6 {
   align-self: center;
   display: flex;
   flex-direction: column;
-  max-width: 32rem;
+  max-width: 40rem;
   width: 100%;
 
   & > * {
@@ -1522,7 +1510,8 @@ abbr {
 
   .option-toggle,
   .info-toggle,
-  .million-toggle {
+  .million-toggle,
+  .expand-table-toggle {
     background: $gray-light;
     border-radius: 5px;
     color: $gray-mid;
@@ -1560,16 +1549,21 @@ abbr {
     }
   }
 
-  .table-expand-icon {
+  .expand-table-toggle {
     color: $gray-mid;
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 0;
+
+    &.is-highlighted {
+      svg {
+        transform: rotate(90deg);
+      }
+    }
 
     svg {
       cursor: pointer;
       margin-bottom: 0.25rem;
+      transform: rotate(-90deg);
     }
   }
 
@@ -2002,10 +1996,10 @@ abbr {
 }
 
 .MapContainer {
-  &.expanded {
-    margin-right: 2.5rem;
-    width: 50%;
-  }
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .MapExplorer {
@@ -2547,11 +2541,6 @@ abbr {
   display: flex;
   flex-direction: column;
   width: calc(100% - 2rem);
-
-  &.expanded {
-    margin-left: 2.5rem;
-    width: calc(50% - 2rem);
-  }
 
   &.stickied {
     position: sticky !important;
@@ -3677,21 +3666,56 @@ footer {
       background: #1e1e30 !important;
     }
   }
+
+  .Home {
+    .home-left,
+    .home-right {
+      &.expanded {
+        width: 69rem;
+      }
+    }
+
+    .home-left {
+      &.expanded {
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    .home-right {
+      &.expanded {
+        flex-direction: row;
+      }
+    }
+  }
+
+  .MapContainer {
+    &.expanded {
+      margin-right: 2.5rem;
+      width: 50%;
+    }
+  }
+
+  .TimeseriesExplorer {
+    &.expanded {
+      margin-left: 2.5rem;
+      width: calc(50% - 2rem);
+    }
+  }
 }
 
 @media (max-width: 769px) {
   .table,
   .header,
   .TimeseriesExplorer,
-  .StateHeader,
+  .MapContainer,
   .Links,
   .Summary,
   .About,
-  .MapExplorer,
   .updates,
   .updates-header,
   .StateMeta,
   .timeline,
+  .table-top,
   .LanguageSwitcher {
     width: calc(100% - 2rem);
   }

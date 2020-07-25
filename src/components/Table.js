@@ -16,13 +16,12 @@ import {
   FilterIcon,
   OrganizationIcon,
   QuestionIcon,
-  ScreenFullIcon,
-  ScreenNormalIcon,
+  FoldDownIcon,
 } from '@primer/octicons-v2-react';
 import classnames from 'classnames';
 import equal from 'fast-deep-equal';
 import produce from 'immer';
-import React, {useCallback, useEffect, useMemo, useState, lazy} from 'react';
+import React, {useCallback, useEffect, useState, lazy} from 'react';
 import {Info} from 'react-feather';
 import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
@@ -141,14 +140,6 @@ function Table({
     leave: TABLE_FADE_OUT,
   });
 
-  const tableIcon = useMemo(() => {
-    return expandTable ? (
-      <ScreenNormalIcon size={16} />
-    ) : (
-      <ScreenFullIcon size={16} />
-    );
-  }, [expandTable]);
-
   const tableStatistics = expandTable
     ? TABLE_STATISTICS_EXPANDED
     : TABLE_STATISTICS;
@@ -187,11 +178,13 @@ function Table({
         </animated.div>
 
         <animated.div
-          className="table-expand-icon"
+          className={classnames('expand-table-toggle', {
+            'is-highlighted': expandTable,
+          })}
           style={trail[1]}
           onClick={setExpandTable.bind(this, !expandTable)}
         >
-          {tableIcon}
+          <FoldDownIcon size={16} />
         </animated.div>
       </div>
 

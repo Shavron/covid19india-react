@@ -254,7 +254,7 @@ function Row({
             {tableStatistics.map((statistic) => (
               <HeaderCell
                 key={statistic}
-                {...{statistic, sortData, setSortData, expandTable}}
+                {...{statistic, sortData, setSortData}}
                 handleSort={handleSortClick.bind(this, statistic)}
               />
             ))}

@@ -241,25 +241,23 @@ h6 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-left: 8rem;
+  margin-left: 9rem;
   margin-right: 3rem;
 
   .home-left,
   .home-right {
     display: flex;
     flex-direction: column;
-    width: 32rem;
+    width: 34rem;
   }
 
   .home-left {
-    margin-left: 2.5rem;
     margin-right: 2.5rem;
     min-height: 60rem;
   }
 
   .home-right {
     margin-left: 2.5rem;
-    margin-right: 2.5rem;
     min-height: 10rem;
   }
 
@@ -1919,7 +1917,7 @@ abbr {
         background: $gray-light-opaque;
         font-size: 13px;
         font-weight: 900;
-        padding: .75rem .5rem;
+        padding: 1.25rem .5rem .75rem;
 
         &:hover {
           background: $gray-hover-opaque !important;
@@ -3619,6 +3617,7 @@ footer {
     }
 
     .navbar-right {
+      align-items: center;
       background: $gray-light-opaque;
       display: flex;
       flex-direction: column;
@@ -3678,12 +3677,14 @@ footer {
     .home-left {
       &.expanded {
         margin-bottom: 2.5rem;
+        margin-right: 0;
       }
     }
 
     .home-right {
       &.expanded {
         flex-direction: row;
+        margin-left: 0;
       }
     }
   }

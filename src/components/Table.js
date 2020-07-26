@@ -230,33 +230,6 @@ function Table({
                   <p>Notes</p>
                 </div>
               </div>
-
-              <div className="helper-right">
-                <div className="info-item">
-                  <h5>C</h5>
-                  <p>Confirmed</p>
-                </div>
-
-                <div className="info-item notes">
-                  <h5>A</h5>
-                  <p>Active</p>
-                </div>
-
-                <div className="info-item">
-                  <h5>R</h5>
-                  <p>Recovered</p>
-                </div>
-
-                <div className="info-item notes">
-                  <h5>D</h5>
-                  <p>Deceased</p>
-                </div>
-
-                <div className="info-item notes">
-                  <h5>T</h5>
-                  <p>Tested</p>
-                </div>
-              </div>
             </div>
 
             <h5 className="text">
@@ -293,7 +266,7 @@ function Table({
           {tableStatistics.map((statistic) => (
             <HeaderCell
               key={statistic}
-              {...{statistic, sortData, setSortData, expandTable}}
+              {...{statistic, sortData, setSortData}}
               handleSort={handleSortClick.bind(this, statistic)}
             />
           ))}

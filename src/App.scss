@@ -3977,6 +3977,11 @@ footer {
   }
 
   .State {
+    .MapExplorer,
+    .StateHeader {
+      width: calc(100% - 2rem);
+    }
+
     .district-bar {
       width: calc(100% - 3rem);
 

@@ -27,9 +27,9 @@ export const TABLE_STATISTICS_EXPANDED = [
   ...PRIMARY_STATISTICS,
   'other',
   'tested',
-  'active rate',
-  'case fatality rate',
-  'recovery rate',
+  'active ratio',
+  'case fatality ratio',
+  'recovery ratio',
   'population',
 ];
 
@@ -40,19 +40,19 @@ export const STATISTICS_CONFIGS = {
   deceased: {key: 'deceased', format: 'int'},
   other: {key: 'migrated', format: 'int'},
   tested: {key: 'tested', format: 'short'},
-  'active rate': {
+  'active ratio': {
     key: 'active',
     options: {rate: true},
     hideDelta: true,
     format: '%',
   },
-  'case fatality rate': {
+  'case fatality ratio': {
     key: 'deceased',
     options: {rate: true},
     hideDelta: true,
     format: '%',
   },
-  'recovery rate': {
+  'recovery ratio': {
     key: 'recovered',
     options: {rate: true},
     hideDelta: true,

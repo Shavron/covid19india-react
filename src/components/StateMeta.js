@@ -94,7 +94,7 @@ function StateMeta({stateCode, data, timeseries}) {
 
         <StateMetaCard
           className="active"
-          title={'Active'}
+          title={'Active Ratio'}
           statistic={`${formatNumber(activePercent, '%')}`}
           formula={'(active / confirmed) * 100'}
           description={
@@ -108,7 +108,7 @@ function StateMeta({stateCode, data, timeseries}) {
 
         <StateMetaCard
           className="recovery"
-          title={'Recovery Rate'}
+          title={'Recovery Ratio'}
           statistic={`${formatNumber(recoveryPercent, '%')}`}
           formula={'(recovered / confirmed) * 100'}
           description={
@@ -122,7 +122,7 @@ function StateMeta({stateCode, data, timeseries}) {
 
         <StateMetaCard
           className="mortality"
-          title={'Case Fatality Rate'}
+          title={'Case Fatality Ratio'}
           statistic={`${formatNumber(deathPercent, '%')}`}
           formula={'(deceased / confirmed) * 100'}
           description={

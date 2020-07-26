@@ -122,7 +122,7 @@ function StateMeta({stateCode, data, timeseries}) {
 
         <StateMetaCard
           className="mortality"
-          title={'Mortality Rate'}
+          title={'Case Fatality Rate'}
           statistic={`${formatNumber(deathPercent)}%`}
           formula={'(deceased / confirmed) * 100'}
           description={

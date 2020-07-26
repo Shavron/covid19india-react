@@ -52,7 +52,7 @@ function Home(props) {
     }
   );
 
-  const [expandTable, setExpandTable] = useState(true);
+  const [expandTable, setExpandTable] = useState(false);
 
   const homeRightElement = useRef();
   const isVisible = useIsVisible(homeRightElement);

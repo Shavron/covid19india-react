@@ -192,7 +192,10 @@ function MapExplorer({
       className={classnames(
         'MapExplorer',
         {stickied: anchor === 'mapexplorer'},
-        {hidden: anchor && !expandTable && anchor !== 'mapexplorer'}
+        {
+          hidden:
+            anchor && (!expandTable || width < 769) && anchor !== 'mapexplorer',
+        }
       )}
     >
       <div className="panel" ref={panelRef}>

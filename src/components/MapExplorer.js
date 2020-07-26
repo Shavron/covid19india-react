@@ -267,7 +267,7 @@ function MapExplorer({
             )}
           </div>
 
-          {width < 769 && (
+          {(expandTable || width < 769) && (
             <div className="switch-statistic fadeInUp" style={trail[5]}>
               {PRIMARY_STATISTICS.map((statistic) => (
                 <div

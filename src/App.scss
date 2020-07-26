@@ -386,18 +386,16 @@ h6 {
   .state-right {
     display: flex;
     flex-direction: column;
-    width: 32rem;
+    width: 34rem;
   }
 
   .state-left {
-    margin-left: 2.5rem;
     margin-right: 2.5rem;
     position: relative;
   }
 
   .state-right {
     margin-left: 2.5rem;
-    margin-right: 2.5rem;
   }
 
   a {
@@ -405,7 +403,7 @@ h6 {
   }
 
   .district-bar {
-    width: 100%;
+    width: calc(100% - 2rem);
   }
 
   .Minigraph {
@@ -1994,7 +1992,6 @@ abbr {
 }
 
 .MapContainer {
-  align-self: center;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -3745,6 +3742,10 @@ footer {
     h1 {
       font-size: 5vw !important;
     }
+  }
+
+  .MapContainer {
+    align-self: center;
   }
 
   .MapExplorer {

@@ -34,11 +34,11 @@ export const TABLE_STATISTICS_EXPANDED = [
 ];
 
 export const STATISTICS_CONFIGS = {
-  confirmed: {key: 'confirmed'},
-  active: {key: 'active', hideDelta: true},
-  recovered: {key: 'recovered'},
-  deceased: {key: 'deceased'},
-  other: {key: 'migrated'},
+  confirmed: {key: 'confirmed', format: 'int'},
+  active: {key: 'active', hideDelta: true, format: 'int'},
+  recovered: {key: 'recovered', format: 'int'},
+  deceased: {key: 'deceased', format: 'int'},
+  other: {key: 'migrated', format: 'int'},
   tested: {key: 'tested', format: 'short'},
   'active rate': {
     key: 'active',
